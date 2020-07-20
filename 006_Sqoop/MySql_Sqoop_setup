@@ -1,0 +1,67 @@
+#Install myql
+
+sudo apt-get install mysql-server
+
+#Move into the mysql shell
+
+mysql -u root
+
+#Create database 
+
+Create Database NameDB;
+
+Use NameDB;
+
+#Create table
+
+Create Table tableName;
+
+Insert Into tableName 
+Values(col1 value, col2 value, col3 value);
+
+# Grant 
+grant all on *.* to 'username'@'localhost' with grant option;
+flush privileges;
+commit;
+exit;
+
+#Installing Sqoop
+
+"""
+cd into the hadoop dir
+"""
+cd Hadoop
+
+"""
+Go to http://apache.mirrors.hoobly.com/sqoop/1.4.7/ to download Sqoop
+and the https://dev.mysql.com/downloads/connector/j/5.1.html for the MySql connector to place in the Sqoop/lib
+"""
+sudo wget http://apache.mirrors.hoobly.com/sqoop/1.4.7/sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+
+tar -zxf sqoop-1.4.7.bin__hadoop-2.6.0.tar.gz
+
+sudo wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.49.tar.gz
+
+tar -zxf mysql-connector-java-5.1.49.tar.gz
+
+"""
+Set Sqoop path in .bash_profile
+"""
+
+export SQOOP_HOME=/home/frederick/hadoop3/sqoop-1.4.7
+export PATH=$PATH:$SQOOP_HOME/bin
+
+"""
+Then is terminal, write this command
+"""
+
+sqoop import --connect jdbc:mysql://localhost/'name of db' --username 'username' -P --table 'name of table' --target-dir '/sqoopout' -m 1;
+
+
+
+
+
+
+
+
+
